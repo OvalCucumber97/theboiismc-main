@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TheBoiisMC</title>
+    
+    <meta name="robots" content="index, follow">
+    <meta name="description" content="Personal site and digital playground of TheBoiisMC.">
+    <meta name="theme-color" content="#0F172A">
+
+    <style>
+        :root {
+            /* Brand Palette (Matches 404 page) */
+            --bg-dark: #020617;
+            --primary: #6366F1;
+            --primary-hover: #818CF8;
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
+            --border-dim: rgba(255, 255, 255, 0.08);
+            
+            /* Spacing & sizing */
+            --header-height: 64px;
+            --content-width: 800px;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-dark);
+            /* System UI Font Stack */
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* SVG Icon Class */
+        .icon-svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        /* --- BACKGROUND FX --- */
+        .ambient-glow {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.05), transparent 25%),
+                radial-gradient(circle at 90% 80%, rgba(168, 85, 247, 0.05), transparent 25%);
+            pointer-events: none;
+        }
+
+        /* --- HEADER --- */
+        .global-header {
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            background: rgba(2, 6, 23, 0.8);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border-dim);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .brand-logo {
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--text-main);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+        .brand-highlight { color: var(--primary); }
+
+        /* Navigation Links */
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+        
+        .nav-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-link:hover { color: var(--text-main); }
+        .nav-link.active { color: var(--text-main); }
+
+        /* Mobile Menu Button */
+        .menu-toggle {
+            display: none; /* Hidden on desktop */
+            background: none;
+            border: none;
+            color: var(--text-main);
+            cursor: pointer;
+        }
+
+        /* --- MAIN CONTENT --- */
+        main {
+            flex: 1;
+            width: 100%;
+            max-width: var(--content-width);
+            margin: 0 auto;
+            padding: 80px 24px;
+        }
+
+        /* Typography */
+        h1 {
+            font-size: 40px;
+            font-weight: 800;
+            margin: 0 0 24px 0;
+            letter-spacing: -1px;
+            color: var(--text-main);
+        }
+
+        h2 {
+            font-size: 24px;
+            font-weight: 600;
+            margin: 48px 0 24px 0;
+            color: var(--text-main);
+            border-bottom: 1px solid var(--border-dim);
+            padding-bottom: 12px;
+        }
+
+        p {
+            color: var(--text-muted);
+            font-size: 17px;
+            margin-bottom: 24px;
+            max-width: 65ch; /* Optimal reading length */
+        }
+
+        a.text-link {
+            color: var(--text-main);
+            text-decoration: underline;
+            text-decoration-color: var(--primary);
+            text-underline-offset: 4px;
+        }
+        a.text-link:hover {
+            color: var(--primary-hover);
+            text-decoration-color: var(--primary-hover);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            border-top: 1px solid var(--border-dim);
+            padding: 48px 24px;
+            margin-top: 60px;
+            background: rgba(2, 6, 23, 0.5);
+        }
+
+        .footer-content {
+            max-width: var(--content-width);
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 32px;
+        }
+
+        .footer-col h3 {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-main);
+            margin: 0 0 16px 0;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-col li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+        .footer-col a:hover { color: var(--primary); }
+
+        .copyright {
+            margin-top: 48px;
+            text-align: center;
+            font-size: 13px;
+            color: rgba(255,255,255,0.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            h1 { font-size: 32px; }
+            .nav-links { display: none; } /* Hide nav on mobile for simplicity */
+            .menu-toggle { display: block; }
+            .footer-content { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ambient-glow"></div>
+
+    <header class="global-header">
+        <a href="/" class="brand-logo">
+            TheBoiis<span class="brand-highlight">MC</span>
+        </a>
+
+        <nav class="nav-links">
+            <a href="#about" class="nav-link">About</a>
+            <a href="#philosophy" class="nav-link">Philosophy</a>
+            <a href="#projects" class="nav-link">Projects</a>
+        </nav>
+        
+        <button class="menu-toggle" aria-label="Menu">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+        </button>
+    </header>
+
+    <main>
+        <section id="about">
+            <h1>Building privately in public.</h1>
+            <p>
+                Hello. I'm the developer behind TheBoiisMC. This site serves as my personal digital garden—a place where I document my work, host my tools, and maintain my own corner of the internet.
+            </p>
+            <p>
+                I am not a cloud provider. I am not a startup. I am a hobbyist building robust, privacy-focused infrastructure for my own use.
+            </p>
+        </section>
+
+        <section id="philosophy">
+            <h2>Philosophy</h2>
+            <p>
+                The modern web has become centralized, tracked, and monetized. My goal is to reclaim digital sovereignty by self-hosting the essential tools I use every day.
+            </p>
+            <p>
+                This project focuses on <strong>Zero-Knowledge</strong> architecture, <strong>Open Source</strong> software, and <strong>No-BS</strong> usability. If you stumbled here by accident, feel free to look around, but know that this infrastructure is built for a specific purpose, not for mass consumption.
+            </p>
+        </section>
+
+        <section id="projects">
+            <h2>Public Projects</h2>
+            <p>
+                While most of my infrastructure is walled off for security, I maintain a few public-facing services for testing and utility.
+            </p>
+            <ul>
+                <li>
+                    <strong><a href="https://maps.theboiismc.com" class="text-link">Maps</a></strong><br>
+                    <span style="font-size: 14px; color: var(--text-muted);">A lightweight, privacy-respecting navigation tool.</span>
+                </li>
+                <br>
+                <li>
+                    <strong><a href="https://search.theboiismc.com" class="text-link">Search</a></strong><br>
+                    <span style="font-size: 14px; color: var(--text-muted);">A metasearch engine that strips tracking pixels from results.</span>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>Navigation</h3>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="mailto:contact@theboiismc.com">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="https://search.theboiismc.com">Search</a></li>
+                    <li><a href="https://maps.theboiismc.com">Maps</a></li>
+                    <li><a href="https://photos.theboiismc.com">Photos</a></li>
+                    <li><a href="https://drive.theboiismc.com">Drive</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Legal</h3>
+                <ul>
+                    <li><span style="color: var(--text-muted); font-size: 13px;">This is a personal hobby project. No warranties provided. Use at your own risk.</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="copyright">
+            &copy; 2026 TheBoiisMC. Self-hosted & Tracking-free.
+        </div>
+    </footer>
+
+</body>
+</html>
