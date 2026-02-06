@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found - TheBoiisMC</title>
+    
+    <meta name="robots" content="noindex, follow">
+    <meta name="theme-color" content="#0F172A">
+
+    <style>
+        :root {
+            /* Brand Palette */
+            --bg-dark: #020617;
+            --primary: #6366F1;
+            --primary-hover: #818CF8;
+            --surface-glass: rgba(30, 41, 59, 0.65);
+            --surface-glass-hover: rgba(51, 65, 85, 0.75);
+            --border-dim: rgba(255, 255, 255, 0.08);
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
+            
+            /* Spacing & sizing */
+            --header-height: 64px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-full: 9999px;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-dark);
+            /* System UI Font Stack for maximum privacy & speed */
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: var(--text-main);
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Icons (SVG Helpers) */
+        .icon-svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        /* --- BACKGROUND FX --- */
+        .ambient-glow {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 15% 50%, rgba(99, 102, 241, 0.08), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(168, 85, 247, 0.08), transparent 25%);
+            pointer-events: none;
+        }
+
+        /* --- HEADER --- */
+        .global-header {
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px; 
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-dim);
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+        }
+
+        .brand-logo {
+            font-weight: 700;
+            font-size: 20px;
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+        .brand-highlight { color: var(--primary); }
+
+        /* Media Query for Logo */
+        @media (max-width: 600px) {
+            .brand-logo span { display: none; }
+            .brand-logo::after { content: "MC"; color: var(--primary); font-weight: 700; }
+        }
+        @media (min-width: 601px) {
+             .brand-logo span { display: block; }
+             .brand-logo::after { content: none; }
+        }
+
+        /* Header Actions */
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .icon-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center; justify-content: center;
+            cursor: pointer;
+            transition: color 0.2s, background 0.2s;
+        }
+        .icon-btn:hover, .icon-btn.active {
+            color: var(--text-main);
+            background: rgba(255,255,255,0.05);
+        }
+
+        /* Modern Header Back Button */
+        .header-back-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border-dim);
+            color: var(--text-main);
+            padding: 6px 16px 6px 12px;
+            border-radius: var(--radius-full);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            margin-right: 8px;
+            transition: background 0.2s;
+        }
+        .header-back-btn:hover {
+            background: rgba(255,255,255,0.1);
+        }
+        @media (max-width: 600px) {
+            /* Mobile: Hide text "Go Back", show only arrow icon */
+            .header-back-btn span { display: none; }
+            .header-back-btn { padding: 0; width: 40px; height: 40px; justify-content: center; border-radius: 50%; border: none; background: transparent; }
+            .header-back-btn svg { margin: 0; }
+        }
+
+        /* --- APP MENU --- */
+        .app-menu-dropdown {
+            position: absolute;
+            top: 50px;
+            right: 0;
+            width: 280px;
+            background: #1E293B;
+            border: 1px solid var(--border-dim);
+            border-radius: var(--radius-lg);
+            padding: 16px;
+            box-shadow: 0 20px 40px -5px rgba(0,0,0,0.4);
+            opacity: 0;
+            transform: translateY(-10px);
+            pointer-events: none;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            z-index: 200;
+        }
+        .app-menu-dropdown.open {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+        
+        .app-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            gap: 8px;
+            color: var(--text-main);
+            padding: 8px 0;
+            border-radius: var(--radius-md);
+            transition: background 0.2s;
+        }
+        .app-item:hover { background: rgba(255,255,255,0.05); }
+        .app-icon-circle {
+            width: 48px; height: 48px;
+            border-radius: 50%;
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary);
+            display: flex;
+            align-items: center; justify-content: center;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .app-name { font-size: 13px; font-weight: 500; }
+
+        /* --- MAIN CONTENT --- */
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 20px 40px 20px;
+        }
+
+        .content-container {
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .error-code {
+            font-size: 120px;
+            line-height: 1;
+            font-weight: 800;
+            letter-spacing: -4px;
+            margin: 0;
+            background: linear-gradient(135deg, #fff 30%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0.9;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .error-code { animation: none; }
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin: 16px 0 16px 0;
+        }
+
+        p {
+            color: var(--text-muted);
+            font-size: 18px;
+            line-height: 1.6;
+            margin: 0 0 40px 0;
+        }
+
+        /* Smart Suggestion Box */
+        .smart-suggestion {
+            display: none;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            padding: 12px 20px;
+            border-radius: var(--radius-md);
+            margin-bottom: 32px;
+            text-align: center;
+        }
+        .smart-suggestion-text {
+            color: var(--primary-hover);
+            font-weight: 500;
+            font-size: 15px;
+        }
+        .smart-suggestion-link {
+            color: var(--text-main);
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            font-weight: 700;
+            margin-left: 6px;
+        }
+
+        /* Action Buttons */
+        .action-row {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 48px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: 15px;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border: 1px solid transparent;
+            box-shadow: 0 4px 6px -1px rgba(99, 102, 241, 0.3);
+        }
+        .btn-primary:hover {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border-dim);
+            color: var(--text-main);
+        }
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: var(--text-muted);
+        }
+        
+        /* --- SUGGESTED APPS SECTION --- */
+        .suggestion-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 16px;
+            text-align: left;
+        }
+
+        .suggestion-card {
+            background: var(--surface-glass);
+            border: 1px solid var(--border-dim);
+            padding: 16px;
+            border-radius: var(--radius-lg);
+            text-decoration: none;
+            transition: transform 0.2s, border-color 0.2s;
+            display: block;
+        }
+        .suggestion-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(99, 102, 241, 0.4);
+            background: var(--surface-glass-hover);
+        }
+        
+        .card-icon {
+            color: var(--primary);
+            margin-bottom: 12px;
+            display: block;
+        }
+        .card-title {
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 14px;
+            display: block;
+            margin-bottom: 4px;
+        }
+        .card-desc {
+            color: var(--text-muted);
+            font-size: 12px;
+            display: block;
+        }
+
+        @media (max-width: 640px) {
+            .error-code { font-size: 80px; }
+            .h1 { font-size: 24px; }
+            .suggestion-grid { grid-template-columns: 1fr; }
+            .suggestion-card { display: flex; align-items: center; gap: 16px; }
+            .card-icon { margin-bottom: 0; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="ambient-glow"></div>
+
+    <header class="global-header" role="navigation" aria-label="Main Navigation">
+        <a href="https://www.theboiismc.com" class="brand-logo" aria-label="TheBoiisMC Main Site">
+            <span>TheBoiis<span class="brand-highlight">MC</span></span>
+        </a>
+
+        <div class="header-actions">
+            
+            <button id="header-back" class="header-back-btn" aria-label="Go Back to Previous Page">
+                <svg class="icon-svg" aria-hidden="true" viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+                <span>Go Back</span>
+            </button>
+
+            <button id="waffle-btn" class="icon-btn" aria-label="Open App Menu" aria-expanded="false" aria-controls="app-dropdown">
+                <svg class="icon-svg" aria-hidden="true" viewBox="0 0 24 24"><path d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z"/></svg>
+            </button>
+            
+            <nav id="app-dropdown" class="app-menu-dropdown" aria-label="App Selection Menu">
+                <a href="https://search.theboiismc.com" class="app-item" aria-label="Go to Search">
+                    <div class="app-icon-circle">
+                        <svg class="icon-svg" aria-hidden="true" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                    </div>
+                    <span class="app-name">Search</span>
+                </a>
+                <a href="https://maps.theboiismc.com" class="app-item" aria-label="Go to Maps">
+                    <div class="app-icon-circle">
+                         <svg class="icon-svg" aria-hidden="true" viewBox="0 0 24 24"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/></svg>
+                    </div>
+                    <span class="app-name">Maps</span>
+                </a>
+                <a href="https://photos.theboiismc.com" class="app-item" aria-label="Go to Photos">
+                    <div class="app-icon-circle">
+                         <svg class="icon-svg" aria-hidden="true" viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                    </div>
+                    <span class="app-name">Photos</span>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="content-container">
+            <div class="error-code">404</div>
+            <h1>Page Not Found</h1>
+            <p>The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.</p>
+
+            <div id="smart-suggestion" class="smart-suggestion">
+                <span class="smart-suggestion-text">Did you mean to go to:</span>
+                <a id="suggestion-link" href="#" class="smart-suggestion-link"></a>
+            </div>
+
+            <div class="action-row">
+                <a href="https://www.theboiismc.com" class="btn btn-primary" aria-label="Return to Main Website">
+                    <svg class="icon-svg" aria-hidden="true" viewBox="0 0 24 24" style="margin-right:8px;"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                    Return Home
+                </a>
+                <a href="mailto:admin@theboiismc.com?subject=Broken%20Link%20Report" class="btn btn-secondary" aria-label="Report Broken Link via Email">
+                    <svg class="icon-svg" aria-hidden="true" viewBox="0 0 24 24" style="margin-right:8px;"><path d="M14.4 6L14 4H5v17h2v-7h5.6l.4 2h7V6z"/></svg>
+                    Report Link
+                </a>
+            </div>
+
+            <div style="text-align: left; margin-top: 48px;">
+                <h3 style="font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 16px;">Available Services</h3>
+                <div class="suggestion-grid">
+                    <a href="https://maps.theboiismc.com" class="suggestion-card" aria-label="Open Maps Application">
+                        <svg class="icon-svg card-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/></svg>
+                        <div>
+                            <span class="card-title">Maps</span>
+                            <span class="card-desc">Navigation data</span>
+                        </div>
+                    </a>
+                    <a href="https://search.theboiismc.com" class="suggestion-card" aria-label="Open Search Application">
+                        <svg class="icon-svg card-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                        <div>
+                            <span class="card-title">Search</span>
+                            <span class="card-desc">Index & Query</span>
+                        </div>
+                    </a>
+                    <a href="https://photos.theboiismc.com" class="suggestion-card" aria-label="Open Photos Application">
+                         <svg class="icon-svg card-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                        <div>
+                            <span class="card-title">Photos</span>
+                            <span class="card-desc">Gallery</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // [PRIVACY] NO ANALYTICS. NO TRACKING.
+
+            // --- 1. WAFFLE MENU TOGGLE ---
+            const waffleBtn = document.getElementById('waffle-btn');
+            const appDropdown = document.getElementById('app-dropdown');
+            
+            if (waffleBtn && appDropdown) {
+                waffleBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const isOpen = appDropdown.classList.contains('open');
+                    
+                    if (isOpen) {
+                        appDropdown.classList.remove('open');
+                        waffleBtn.classList.remove('active');
+                        waffleBtn.setAttribute('aria-expanded', 'false');
+                    } else {
+                        appDropdown.classList.add('open');
+                        waffleBtn.classList.add('active');
+                        waffleBtn.setAttribute('aria-expanded', 'true');
+                    }
+                });
+
+                document.addEventListener('click', (e) => {
+                    if (!appDropdown.contains(e.target) && !waffleBtn.contains(e.target)) {
+                        appDropdown.classList.remove('open');
+                        waffleBtn.classList.remove('active');
+                        waffleBtn.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
+
+            // --- 2. HEADER BACK BUTTON LOGIC ---
+            const backBtn = document.getElementById('header-back');
+            if (backBtn) {
+                // Only show button if there is history to go back to
+                if (window.history.length > 1) {
+                    backBtn.addEventListener('click', () => {
+                        window.history.back();
+                    });
+                } else {
+                    backBtn.style.display = 'none';
+                }
+            }
+
+            // --- 3. LEVENSHTEIN DISTANCE (Smart Suggestion) ---
+            const validPaths = [
+                { keyword: 'maps', url: 'https://maps.theboiismc.com', label: 'Maps' },
+                { keyword: 'search', url: 'https://search.theboiismc.com', label: 'Search' },
+                { keyword: 'photos', url: 'https://photos.theboiismc.com', label: 'Photos' }
+            ];
+
+            function getEditDistance(a, b) {
+                if (a.length === 0) return b.length;
+                if (b.length === 0) return a.length;
+                
+                const matrix = [];
+                for (let i = 0; i <= b.length; i++) {
+                    matrix[i] = [i];
+                }
+                for (let j = 0; j <= a.length; j++) {
+                    matrix[0][j] = j;
+                }
+
+                for (let i = 1; i <= b.length; i++) {
+                    for (let j = 1; j <= a.length; j++) {
+                        if (b.charAt(i - 1) === a.charAt(j - 1)) {
+                            matrix[i][j] = matrix[i - 1][j - 1];
+                        } else {
+                            matrix[i][j] = Math.min(
+                                matrix[i - 1][j - 1] + 1,
+                                matrix[i][j - 1] + 1,
+                                matrix[i - 1][j] + 1
+                            );
+                        }
+                    }
+                }
+                return matrix[b.length][a.length];
+            }
+
+            const currentPath = window.location.pathname.replace(/^\/|\/$/g, '').toLowerCase();
+
+            if (currentPath.length > 2) { 
+                let bestMatch = null;
+                let lowestDistance = 99;
+
+                validPaths.forEach(item => {
+                    const dist = getEditDistance(currentPath, item.keyword);
+                    if (dist < 4 && dist < lowestDistance) {
+                        lowestDistance = dist;
+                        bestMatch = item;
+                    }
+                });
+
+                if (bestMatch) {
+                    const suggestionBox = document.getElementById('smart-suggestion');
+                    const suggestionLink = document.getElementById('suggestion-link');
+                    
+                    if (suggestionBox && suggestionLink) {
+                        suggestionLink.href = bestMatch.url;
+                        suggestionLink.textContent = bestMatch.label;
+                        suggestionBox.style.display = 'block';
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
