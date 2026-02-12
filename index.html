@@ -43,34 +43,20 @@
       },
       "hasPart": [
         {
-          "@type": "WebSite",
+          "@type": "WebApplication",
           "name": "TheBoiisMC Search",
           "url": "https://search.theboiismc.com",
-          "description": "A metasearch engine focused on privacy and tracking removal."
+          "description": "A private metasearch engine focused on tracking removal.",
+          "applicationCategory": "SearchEngine",
+          "operatingSystem": "Any"
         },
         {
-          "@type": "WebSite",
+          "@type": "WebApplication",
           "name": "TheBoiisMC Maps",
           "url": "https://maps.theboiismc.com",
-          "description": "Self-hosted, privacy-respecting navigation and map service."
-        },
-        {
-          "@type": "WebSite",
-          "name": "TheBoiisMC Photos",
-          "url": "https://photos.theboiismc.com",
-          "description": "Private, secure photo storage and management."
-        },
-        {
-          "@type": "WebSite",
-          "name": "TheBoiisMC Drive",
-          "url": "https://drive.theboiismc.com",
-          "description": "Encrypted file storage and digital workspace."
-        },
-        {
-          "@type": "WebSite",
-          "name": "TheBoiisMC Home Assistant",
-          "url": "https://homeassistant.theboiismc.com",
-          "description": "Centralized hub for secure home automation."
+          "description": "A lightweight, privacy-respecting navigation and map service.",
+          "applicationCategory": "Maps",
+          "operatingSystem": "Any"
         }
       ]
     }
@@ -85,6 +71,7 @@
             --text-main: #F8FAFC;
             --text-muted: #94A3B8;
             --border-dim: rgba(255, 255, 255, 0.08);
+            --menu-bg: #0F172A;
             
             /* Spacing & sizing */
             --header-height: 64px;
@@ -105,8 +92,8 @@
         }
 
         .icon-svg {
-            width: 20px;
-            height: 20px;
+            width: 24px;
+            height: 24px;
             fill: currentColor;
             display: inline-block;
             vertical-align: middle;
@@ -123,6 +110,7 @@
             pointer-events: none;
         }
 
+        /* --- HEADER --- */
         .global-header {
             height: var(--header-height);
             display: flex;
@@ -144,8 +132,15 @@
             color: var(--text-main);
             text-decoration: none;
             letter-spacing: -0.5px;
+            margin-right: auto;
         }
         .brand-highlight { color: var(--primary); }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
 
         .nav-links {
             display: flex;
@@ -160,9 +155,87 @@
             transition: color 0.2s;
         }
         .nav-link:hover { color: var(--text-main); }
-        .nav-link.active { color: var(--text-main); }
 
-        .menu-toggle {
+        /* --- WAFFLE MENU --- */
+        .app-launcher-container {
+            position: relative;
+        }
+
+        .waffle-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            color: var(--text-muted);
+            transition: color 0.2s, background-color 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .waffle-btn:hover {
+            color: var(--text-main);
+            background-color: rgba(255,255,255,0.05);
+        }
+
+        .app-dropdown {
+            position: absolute;
+            top: 120%;
+            right: 0;
+            width: 300px;
+            background-color: var(--menu-bg);
+            border: 1px solid var(--border-dim);
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            opacity: 0;
+            transform: translateY(-10px);
+            pointer-events: none;
+            transition: opacity 0.2s, transform 0.2s;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            z-index: 200;
+        }
+
+        .app-dropdown.active {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: all;
+        }
+
+        .app-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: var(--text-main);
+            padding: 16px;
+            border-radius: 8px;
+            transition: background-color 0.2s;
+            text-align: center;
+        }
+
+        .app-item:hover {
+            background-color: rgba(255,255,255,0.05);
+        }
+
+        .app-icon {
+            width: 32px;
+            height: 32px;
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+
+        .app-label {
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        /* --- MOBILE MENU --- */
+        .mobile-menu-toggle {
             display: none;
             background: none;
             border: none;
@@ -170,6 +243,7 @@
             cursor: pointer;
         }
 
+        /* --- MAIN --- */
         main {
             flex: 1;
             width: 100%;
@@ -265,7 +339,7 @@
         @media (max-width: 640px) {
             h1 { font-size: 32px; }
             .nav-links { display: none; }
-            .menu-toggle { display: block; }
+            .mobile-menu-toggle { display: block; }
             .footer-content { flex-direction: column; }
         }
     </style>
@@ -279,15 +353,41 @@
             TheBoiis<span class="brand-highlight">MC</span>
         </a>
 
-        <nav class="nav-links">
-            <a href="#about" class="nav-link">About</a>
-            <a href="#philosophy" class="nav-link">Philosophy</a>
-            <a href="#projects" class="nav-link">Projects</a>
-        </nav>
-        
-        <button class="menu-toggle" aria-label="Menu">
-            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
-        </button>
+        <div class="header-right">
+            <nav class="nav-links">
+                <a href="#about" class="nav-link">About</a>
+                <a href="#philosophy" class="nav-link">Philosophy</a>
+                <a href="#projects" class="nav-link">Projects</a>
+            </nav>
+
+            <div class="app-launcher-container">
+                <button class="waffle-btn" id="waffleBtn" aria-label="App Launcher" aria-expanded="false">
+                    <svg class="icon-svg" viewBox="0 0 24 24">
+                        <path d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z"/>
+                    </svg>
+                </button>
+
+                <div class="app-dropdown" id="appDropdown">
+                    <a href="https://search.theboiismc.com" class="app-item">
+                        <svg class="app-icon" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                        </svg>
+                        <span class="app-label">Search</span>
+                    </a>
+                    
+                    <a href="https://maps.theboiismc.com" class="app-item">
+                        <svg class="app-icon" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/>
+                        </svg>
+                        <span class="app-label">Maps</span>
+                    </a>
+                </div>
+            </div>
+
+            <button class="mobile-menu-toggle" aria-label="Menu">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+            </button>
+        </div>
     </header>
 
     <main>
@@ -342,17 +442,6 @@
             </div>
             
             <div class="footer-col">
-                <h3>Services</h3>
-                <ul>
-                    <li><a href="https://search.theboiismc.com">Search</a></li>
-                    <li><a href="https://maps.theboiismc.com">Maps</a></li>
-                    <li><a href="https://photos.theboiismc.com">Photos</a></li>
-                    <li><a href="https://drive.theboiismc.com">Drive</a></li>
-                    <li><a href="https://homeassistant.theboiismc.com">Home Assistant</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-col">
                 <h3>Legal</h3>
                 <ul>
                     <li><span style="color: var(--text-muted); font-size: 13px;">This is a personal hobby project. No warranties provided. Use at your own risk.</span></li>
@@ -364,6 +453,42 @@
             &copy; 2026 TheBoiisMC. Self-hosted & Tracking-free.
         </div>
     </footer>
+
+    <script>
+        // Secure Menu Toggle Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const waffleBtn = document.getElementById('waffleBtn');
+            const appDropdown = document.getElementById('appDropdown');
+
+            if (waffleBtn && appDropdown) {
+                // Toggle menu on click
+                waffleBtn.addEventListener('click', (e) => {
+                    e.stopPropagation(); // Prevent click from bubbling to document
+                    const isExpanded = waffleBtn.getAttribute('aria-expanded') === 'true';
+                    
+                    waffleBtn.setAttribute('aria-expanded', !isExpanded);
+                    appDropdown.classList.toggle('active');
+                });
+
+                // Close menu when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!appDropdown.contains(e.target) && !waffleBtn.contains(e.target)) {
+                        appDropdown.classList.remove('active');
+                        waffleBtn.setAttribute('aria-expanded', 'false');
+                    }
+                });
+
+                // Close menu on Escape key
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') {
+                        appDropdown.classList.remove('active');
+                        waffleBtn.setAttribute('aria-expanded', 'false');
+                        waffleBtn.focus();
+                    }
+                });
+            }
+        });
+    </script>
 
 </body>
 </html>
