@@ -3,15 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TheBoiisMC</title>
+    <title>TheBoiisMC | Personal Digital Garden & Privacy Infrastructure</title>
     
     <meta name="robots" content="index, follow">
-    <meta name="description" content="Personal site and digital playground of TheBoiisMC.">
+    <meta name="description" content="The personal digital garden of TheBoiisMC. A hub for self-hosted, privacy-respecting infrastructure and reclaimed digital sovereignty through open-source software.">
     <meta name="theme-color" content="#0F172A">
+    
+    <link rel="canonical" href="https://www.theboiismc.com/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.theboiismc.com/">
+    <meta property="og:title" content="TheBoiisMC | Building Privately in Public">
+    <meta property="og:description" content="Explore the digital playground of TheBoiisMC. Dedicated to privacy, self-hosting, and open-source tools.">
+    <meta property="og:image" content="https://www.theboiismc.com/og-image.jpg">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.theboiismc.com/">
+    <meta property="twitter:title" content="TheBoiisMC | Digital Sovereignty">
+    <meta property="twitter:description" content="Personal site and digital garden focused on privacy-first infrastructure.">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "TheBoiisMC",
+      "alternateName": "The Boiis MC",
+      "url": "https://www.theboiismc.com/",
+      "description": "A personal digital garden and privacy-focused infrastructure project.",
+      "publisher": {
+        "@type": "Person",
+        "name": "TheBoiisMC"
+      },
+      "mainEntity": {
+        "@type": "Person",
+        "name": "TheBoiisMC",
+        "jobTitle": "Developer",
+        "url": "https://www.theboiismc.com/",
+        "knowsAbout": ["Self-hosting", "Privacy", "Cybersecurity", "Networking", "Open Source Software"]
+      },
+      "hasPart": [
+        {
+          "@type": "WebSite",
+          "name": "TheBoiisMC Search",
+          "url": "https://search.theboiismc.com",
+          "description": "A metasearch engine focused on privacy and tracking removal."
+        },
+        {
+          "@type": "WebSite",
+          "name": "TheBoiisMC Maps",
+          "url": "https://maps.theboiismc.com",
+          "description": "Self-hosted, privacy-respecting navigation and map service."
+        },
+        {
+          "@type": "WebSite",
+          "name": "TheBoiisMC Photos",
+          "url": "https://photos.theboiismc.com",
+          "description": "Private, secure photo storage and management."
+        },
+        {
+          "@type": "WebSite",
+          "name": "TheBoiisMC Drive",
+          "url": "https://drive.theboiismc.com",
+          "description": "Encrypted file storage and digital workspace."
+        },
+        {
+          "@type": "WebSite",
+          "name": "TheBoiisMC Home Assistant",
+          "url": "https://homeassistant.theboiismc.com",
+          "description": "Centralized hub for secure home automation."
+        }
+      ]
+    }
+    </script>
 
     <style>
         :root {
-            /* Brand Palette (Matches 404 page) */
+            /* Brand Palette */
             --bg-dark: #020617;
             --primary: #6366F1;
             --primary-hover: #818CF8;
@@ -28,7 +95,6 @@
             margin: 0;
             padding: 0;
             background-color: var(--bg-dark);
-            /* System UI Font Stack */
             font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             color: var(--text-main);
             line-height: 1.6;
@@ -38,7 +104,6 @@
             flex-direction: column;
         }
 
-        /* SVG Icon Class */
         .icon-svg {
             width: 20px;
             height: 20px;
@@ -47,7 +112,6 @@
             vertical-align: middle;
         }
 
-        /* --- BACKGROUND FX --- */
         .ambient-glow {
             position: fixed;
             width: 100vw;
@@ -59,7 +123,6 @@
             pointer-events: none;
         }
 
-        /* --- HEADER --- */
         .global-header {
             height: var(--header-height);
             display: flex;
@@ -84,7 +147,6 @@
         }
         .brand-highlight { color: var(--primary); }
 
-        /* Navigation Links */
         .nav-links {
             display: flex;
             gap: 24px;
@@ -100,16 +162,14 @@
         .nav-link:hover { color: var(--text-main); }
         .nav-link.active { color: var(--text-main); }
 
-        /* Mobile Menu Button */
         .menu-toggle {
-            display: none; /* Hidden on desktop */
+            display: none;
             background: none;
             border: none;
             color: var(--text-main);
             cursor: pointer;
         }
 
-        /* --- MAIN CONTENT --- */
         main {
             flex: 1;
             width: 100%;
@@ -118,7 +178,6 @@
             padding: 80px 24px;
         }
 
-        /* Typography */
         h1 {
             font-size: 40px;
             font-weight: 800;
@@ -140,7 +199,7 @@
             color: var(--text-muted);
             font-size: 17px;
             margin-bottom: 24px;
-            max-width: 65ch; /* Optimal reading length */
+            max-width: 65ch;
         }
 
         a.text-link {
@@ -154,7 +213,6 @@
             text-decoration-color: var(--primary-hover);
         }
 
-        /* --- FOOTER --- */
         footer {
             border-top: 1px solid var(--border-dim);
             padding: 48px 24px;
@@ -204,10 +262,9 @@
             color: rgba(255,255,255,0.2);
         }
 
-        /* Responsive */
         @media (max-width: 640px) {
             h1 { font-size: 32px; }
-            .nav-links { display: none; } /* Hide nav on mobile for simplicity */
+            .nav-links { display: none; }
             .menu-toggle { display: block; }
             .footer-content { flex-direction: column; }
         }
@@ -218,7 +275,7 @@
     <div class="ambient-glow"></div>
 
     <header class="global-header">
-        <a href="/" class="brand-logo">
+        <a href="https://www.theboiismc.com/" class="brand-logo">
             TheBoiis<span class="brand-highlight">MC</span>
         </a>
 
@@ -278,7 +335,7 @@
             <div class="footer-col">
                 <h3>Navigation</h3>
                 <ul>
-                    <li><a href="/">Home</a></li>
+                    <li><a href="https://www.theboiismc.com/">Home</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="mailto:contact@theboiismc.com">Contact</a></li>
                 </ul>
@@ -291,6 +348,7 @@
                     <li><a href="https://maps.theboiismc.com">Maps</a></li>
                     <li><a href="https://photos.theboiismc.com">Photos</a></li>
                     <li><a href="https://drive.theboiismc.com">Drive</a></li>
+                    <li><a href="https://homeassistant.theboiismc.com">Home Assistant</a></li>
                 </ul>
             </div>
 
