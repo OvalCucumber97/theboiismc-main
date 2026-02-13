@@ -3,492 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TheBoiisMC | Personal Digital Garden & Privacy Infrastructure</title>
     
-    <meta name="robots" content="index, follow">
-    <meta name="description" content="The personal digital garden of TheBoiisMC. A hub for self-hosted, privacy-respecting infrastructure and reclaimed digital sovereignty through open-source software.">
+    <meta http-equiv="Content-Security-Policy" 
+          content="default-src 'self'; frame-ancestors 'none'; style-src 'self' https://static.theboiismc.com; script-src 'self' https://static.theboiismc.com; img-src 'self' https://static.theboiismc.com; connect-src 'self'; base-uri 'self'; form-action 'self';">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+
+    <title>TheBoiisMC | Privacy, Code & Life</title>
+    <meta name="description" content="The personal digital garden of TheBoiisMC. A hub for privacy tools, dog photos, and self-hosted experiments.">
+    <meta name="keywords" content="TheBoiisMC, Privacy Tools, Secure Maps, Anonymous Search, Wisconsin Developer, Self-Hosting, Digital Garden">
+    <meta name="author" content="TheBoiisMC">
     <meta name="theme-color" content="#0F172A">
-    
     <link rel="canonical" href="https://www.theboiismc.com/">
 
-    <meta property="og:type" content="website">
+    <meta property="og:type" content="profile">
+    <meta property="og:title" content="TheBoiisMC | Digital Garden">
+    <meta property="og:description" content="Building privacy tools and walking dogs in Wisconsin.">
+    <meta property="og:image" content="https://static.theboiismc.com/profile-card.jpg">
     <meta property="og:url" content="https://www.theboiismc.com/">
-    <meta property="og:title" content="TheBoiisMC | Building Privately in Public">
-    <meta property="og:description" content="Explore the digital playground of TheBoiisMC. Dedicated to privacy, self-hosting, and open-source tools.">
-    <meta property="og:image" content="https://www.theboiismc.com/og-image.jpg">
 
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://www.theboiismc.com/">
-    <meta property="twitter:title" content="TheBoiisMC | Digital Sovereignty">
-    <meta property="twitter:description" content="Personal site and digital garden focused on privacy-first infrastructure.">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://static.theboiismc.com/favicon-32x32.png">
+    
+    <link rel="stylesheet" href="https://static.theboiismc.com/global.css" crossorigin="anonymous">
+    
+    <script src="https://static.theboiismc.com/header.js" defer crossorigin="anonymous"></script>
+    <script src="https://static.theboiismc.com/menu.js" defer crossorigin="anonymous"></script>
 
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "TheBoiisMC",
-      "alternateName": "The Boiis MC",
-      "url": "https://www.theboiismc.com/",
-      "description": "A personal digital garden and privacy-focused infrastructure project.",
-      "publisher": {
-        "@type": "Person",
-        "name": "TheBoiisMC"
-      },
-      "mainEntity": {
-        "@type": "Person",
-        "name": "TheBoiisMC",
-        "jobTitle": "Developer",
-        "url": "https://www.theboiismc.com/",
-        "knowsAbout": ["Self-hosting", "Privacy", "Cybersecurity", "Networking", "Open Source Software"]
-      },
-      "hasPart": [
+      "@graph": [
+        {
+          "@type": "ProfilePage",
+          "@id": "https://www.theboiismc.com/#webpage",
+          "url": "https://www.theboiismc.com/",
+          "name": "TheBoiisMC - Digital Garden",
+          "isPartOf": { "@id": "https://www.theboiismc.com/#website" },
+          "primaryImageOfPage": { "@id": "https://www.theboiismc.com/#primaryimage" }
+        },
+        {
+          "@type": "Person",
+          "@id": "https://www.theboiismc.com/#person",
+          "name": "TheBoiisMC",
+          "homeLocation": {
+            "@type": "Place",
+            "name": "Wisconsin, USA"
+          },
+          "description": "Privacy advocate, self-hoster, and dog owner.",
+          "knowsAbout": ["Online Privacy", "Web Infrastructure", "Linux"],
+          "image": "https://static.theboiismc.com/profile.jpg",
+          "mainEntityOfPage": { "@id": "https://www.theboiismc.com/#webpage" }
+        },
         {
           "@type": "WebApplication",
           "name": "TheBoiisMC Search",
           "url": "https://search.theboiismc.com",
-          "description": "A private metasearch engine focused on tracking removal.",
           "applicationCategory": "SearchEngine",
-          "operatingSystem": "Any"
+          "description": "A private, tracking-free search engine.",
+          "author": { "@id": "https://www.theboiismc.com/#person" },
+          "isAccessibleForFree": true
         },
         {
           "@type": "WebApplication",
           "name": "TheBoiisMC Maps",
           "url": "https://maps.theboiismc.com",
-          "description": "A lightweight, privacy-respecting navigation and map service.",
-          "applicationCategory": "Maps",
-          "operatingSystem": "Any"
+          "applicationCategory": "NavigationApplication",
+          "description": "Secure, private mapping and navigation.",
+          "author": { "@id": "https://www.theboiismc.com/#person" },
+          "isAccessibleForFree": true
         }
       ]
     }
     </script>
-
-    <style>
-        :root {
-            /* Brand Palette */
-            --bg-dark: #020617;
-            --primary: #6366F1;
-            --primary-hover: #818CF8;
-            --text-main: #F8FAFC;
-            --text-muted: #94A3B8;
-            --border-dim: rgba(255, 255, 255, 0.08);
-            --menu-bg: #0F172A;
-            
-            /* Spacing & sizing */
-            --header-height: 64px;
-            --content-width: 800px;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-dark);
-            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            color: var(--text-main);
-            line-height: 1.6;
-            overflow-x: hidden;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .icon-svg {
-            width: 24px;
-            height: 24px;
-            fill: currentColor;
-            display: inline-block;
-            vertical-align: middle;
-        }
-
-        .ambient-glow {
-            position: fixed;
-            width: 100vw;
-            height: 100vh;
-            z-index: -1;
-            background: 
-                radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.05), transparent 25%),
-                radial-gradient(circle at 90% 80%, rgba(168, 85, 247, 0.05), transparent 25%);
-            pointer-events: none;
-        }
-
-        /* --- HEADER --- */
-        .global-header {
-            height: var(--header-height);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 24px;
-            background: rgba(2, 6, 23, 0.8);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border-bottom: 1px solid var(--border-dim);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .brand-logo {
-            font-weight: 700;
-            font-size: 18px;
-            color: var(--text-main);
-            text-decoration: none;
-            letter-spacing: -0.5px;
-            margin-right: auto;
-        }
-        .brand-highlight { color: var(--primary); }
-
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 24px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 24px;
-        }
-        
-        .nav-link {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-        .nav-link:hover { color: var(--text-main); }
-
-        /* --- WAFFLE MENU --- */
-        .app-launcher-container {
-            position: relative;
-        }
-
-        .waffle-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 8px;
-            border-radius: 50%;
-            color: var(--text-muted);
-            transition: color 0.2s, background-color 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .waffle-btn:hover {
-            color: var(--text-main);
-            background-color: rgba(255,255,255,0.05);
-        }
-
-        .app-dropdown {
-            position: absolute;
-            top: 120%;
-            right: 0;
-            width: 300px;
-            background-color: var(--menu-bg);
-            border: 1px solid var(--border-dim);
-            border-radius: 12px;
-            padding: 16px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-            opacity: 0;
-            transform: translateY(-10px);
-            pointer-events: none;
-            transition: opacity 0.2s, transform 0.2s;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            z-index: 200;
-        }
-
-        .app-dropdown.active {
-            opacity: 1;
-            transform: translateY(0);
-            pointer-events: all;
-        }
-
-        .app-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            color: var(--text-main);
-            padding: 16px;
-            border-radius: 8px;
-            transition: background-color 0.2s;
-            text-align: center;
-        }
-
-        .app-item:hover {
-            background-color: rgba(255,255,255,0.05);
-        }
-
-        .app-icon {
-            width: 32px;
-            height: 32px;
-            margin-bottom: 8px;
-            color: var(--primary);
-        }
-
-        .app-label {
-            font-size: 13px;
-            font-weight: 500;
-        }
-
-        /* --- MOBILE MENU --- */
-        .mobile-menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--text-main);
-            cursor: pointer;
-        }
-
-        /* --- MAIN --- */
-        main {
-            flex: 1;
-            width: 100%;
-            max-width: var(--content-width);
-            margin: 0 auto;
-            padding: 80px 24px;
-        }
-
-        h1 {
-            font-size: 40px;
-            font-weight: 800;
-            margin: 0 0 24px 0;
-            letter-spacing: -1px;
-            color: var(--text-main);
-        }
-
-        h2 {
-            font-size: 24px;
-            font-weight: 600;
-            margin: 48px 0 24px 0;
-            color: var(--text-main);
-            border-bottom: 1px solid var(--border-dim);
-            padding-bottom: 12px;
-        }
-
-        p {
-            color: var(--text-muted);
-            font-size: 17px;
-            margin-bottom: 24px;
-            max-width: 65ch;
-        }
-
-        a.text-link {
-            color: var(--text-main);
-            text-decoration: underline;
-            text-decoration-color: var(--primary);
-            text-underline-offset: 4px;
-        }
-        a.text-link:hover {
-            color: var(--primary-hover);
-            text-decoration-color: var(--primary-hover);
-        }
-
-        footer {
-            border-top: 1px solid var(--border-dim);
-            padding: 48px 24px;
-            margin-top: 60px;
-            background: rgba(2, 6, 23, 0.5);
-        }
-
-        .footer-content {
-            max-width: var(--content-width);
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 32px;
-        }
-
-        .footer-col h3 {
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-main);
-            margin: 0 0 16px 0;
-        }
-
-        .footer-col ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .footer-col li {
-            margin-bottom: 12px;
-        }
-
-        .footer-col a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.2s;
-        }
-        .footer-col a:hover { color: var(--primary); }
-
-        .copyright {
-            margin-top: 48px;
-            text-align: center;
-            font-size: 13px;
-            color: rgba(255,255,255,0.2);
-        }
-
-        @media (max-width: 640px) {
-            h1 { font-size: 32px; }
-            .nav-links { display: none; }
-            .mobile-menu-toggle { display: block; }
-            .footer-content { flex-direction: column; }
-        }
-    </style>
 </head>
 <body>
 
-    <div class="ambient-glow"></div>
+    <boiismc-header></boiismc-header>
 
-    <header class="global-header">
-        <a href="https://www.theboiismc.com/" class="brand-logo">
-            TheBoiis<span class="brand-highlight">MC</span>
-        </a>
+    <div class="waffle-container">
+        <button id="waffleBtn" class="waffle-btn" aria-label="Open Apps Menu">
+            <svg class="waffle-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z"/>
+            </svg>
+        </button>
+        <nav id="appDrawer" class="app-drawer">
+            <a href="https://maps.theboiismc.com" class="app-link">
+                <span class="app-emoji">🗺️</span> Maps
+            </a>
+            <a href="https://search.theboiismc.com" class="app-link">
+                <span class="app-emoji">🔍</span> Search
+            </a>
+        </nav>
+    </div>
 
-        <div class="header-right">
-            <nav class="nav-links">
-                <a href="#about" class="nav-link">About</a>
-                <a href="#philosophy" class="nav-link">Philosophy</a>
-                <a href="#projects" class="nav-link">Projects</a>
-            </nav>
+    <main class="main-grid">
+        
+        <article class="card hero">
+            <span class="tag">About Me</span>
+            <h2>Hi, I'm TheBoiisMC.</h2>
+            <p>
+                Welcome to my corner of the internet. I'm a developer and privacy advocate based in Wisconsin. 
+                This site isn't a startup—it's my digital garden. I build things to see if I can, and I host them because I hate being tracked.
+            </p>
+        </article>
 
-            <div class="app-launcher-container">
-                <button class="waffle-btn" id="waffleBtn" aria-label="App Launcher" aria-expanded="false">
-                    <svg class="icon-svg" viewBox="0 0 24 24">
-                        <path d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z"/>
-                    </svg>
-                </button>
-
-                <div class="app-dropdown" id="appDropdown">
-                    <a href="https://search.theboiismc.com" class="app-item">
-                        <svg class="app-icon" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-                        </svg>
-                        <span class="app-label">Search</span>
-                    </a>
-                    
-                    <a href="https://maps.theboiismc.com" class="app-item">
-                        <svg class="app-icon" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/>
-                        </svg>
-                        <span class="app-label">Maps</span>
-                    </a>
+        <article class="card">
+            <span class="tag">Life</span>
+            <h2>The Real Bosses</h2>
+            <p>
+                My two dogs are the reason I step away from the keyboard. If the site is down, I'm probably walking them. 
+            </p>
+            <div class="card-image-placeholder" role="img" aria-label="Photo of my dogs">
                 </div>
-            </div>
+        </article>
 
-            <button class="mobile-menu-toggle" aria-label="Menu">
-                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
-            </button>
-        </div>
-    </header>
+        <article class="card">
+            <span class="tag">Philosophy</span>
+            <h2>Why I Self-Host</h2>
+            <p>
+                Your data shouldn't be the price of admission for the internet. I run my own Maps and Search instances to prove that privacy is still possible in 2026.
+            </p>
+        </article>
 
-    <main>
-        <section id="about">
-            <h1>Building privately in public.</h1>
-            <p>
-                Hello. I'm the developer behind TheBoiisMC. This site serves as my personal digital garden—a place where I document my work, host my tools, and maintain my own corner of the internet.
-            </p>
-            <p>
-                I am not a cloud provider. I am not a startup. I am a hobbyist building robust, privacy-focused infrastructure for my own use.
-            </p>
-        </section>
-
-        <section id="philosophy">
-            <h2>Philosophy</h2>
-            <p>
-                The modern web has become centralized, tracked, and monetized. My goal is to reclaim digital sovereignty by self-hosting the essential tools I use every day.
-            </p>
-            <p>
-                This project focuses on <strong>Zero-Knowledge</strong> architecture, <strong>Open Source</strong> software, and <strong>No-BS</strong> usability. If you stumbled here by accident, feel free to look around, but know that this infrastructure is built for a specific purpose, not for mass consumption.
-            </p>
-        </section>
-
-        <section id="projects">
-            <h2>Public Projects</h2>
-            <p>
-                While most of my infrastructure is walled off for security, I maintain a few public-facing services for testing and utility.
-            </p>
-            <ul>
-                <li>
-                    <strong><a href="https://maps.theboiismc.com" class="text-link">Maps</a></strong><br>
-                    <span style="font-size: 14px; color: var(--text-muted);">A lightweight, privacy-respecting navigation tool.</span>
-                </li>
-                <br>
-                <li>
-                    <strong><a href="https://search.theboiismc.com" class="text-link">Search</a></strong><br>
-                    <span style="font-size: 14px; color: var(--text-muted);">A metasearch engine that strips tracking pixels from results.</span>
-                </li>
+        <article class="card">
+            <span class="tag">Status</span>
+            <h2>System Status</h2>
+            <ul class="status-list">
+                <li><strong>Homelab:</strong> Online</li>
+                <li><strong>Coffee:</strong> Low</li>
+                <li><strong>Location:</strong> WI, USA</li>
             </ul>
-        </section>
+        </article>
+
     </main>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-col">
-                <h3>Navigation</h3>
-                <ul>
-                    <li><a href="https://www.theboiismc.com/">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="mailto:contact@theboiismc.com">Contact</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-col">
-                <h3>Legal</h3>
-                <ul>
-                    <li><span style="color: var(--text-muted); font-size: 13px;">This is a personal hobby project. No warranties provided. Use at your own risk.</span></li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="copyright">
-            &copy; 2026 TheBoiisMC. Self-hosted & Tracking-free.
-        </div>
+    <footer class="site-footer">
+        &copy; 2026 TheBoiisMC. Built privately in public.
     </footer>
-
-    <script>
-        // Secure Menu Toggle Logic
-        document.addEventListener('DOMContentLoaded', () => {
-            const waffleBtn = document.getElementById('waffleBtn');
-            const appDropdown = document.getElementById('appDropdown');
-
-            if (waffleBtn && appDropdown) {
-                // Toggle menu on click
-                waffleBtn.addEventListener('click', (e) => {
-                    e.stopPropagation(); // Prevent click from bubbling to document
-                    const isExpanded = waffleBtn.getAttribute('aria-expanded') === 'true';
-                    
-                    waffleBtn.setAttribute('aria-expanded', !isExpanded);
-                    appDropdown.classList.toggle('active');
-                });
-
-                // Close menu when clicking outside
-                document.addEventListener('click', (e) => {
-                    if (!appDropdown.contains(e.target) && !waffleBtn.contains(e.target)) {
-                        appDropdown.classList.remove('active');
-                        waffleBtn.setAttribute('aria-expanded', 'false');
-                    }
-                });
-
-                // Close menu on Escape key
-                document.addEventListener('keydown', (e) => {
-                    if (e.key === 'Escape') {
-                        appDropdown.classList.remove('active');
-                        waffleBtn.setAttribute('aria-expanded', 'false');
-                        waffleBtn.focus();
-                    }
-                });
-            }
-        });
-    </script>
 
 </body>
 </html>
