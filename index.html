@@ -13,7 +13,7 @@
 
     <meta property="og:type" content="profile">
     <meta property="og:title" content="TheBoiisMC | Digital Freedom">
-    <meta property="og:description" content="If the cloud is just someone else's computer? Why not build one yourself.">
+    <meta property="og:description" content="TheBoiisMC | Digital Freedom. If the cloud is just someone else's computer? Why not build one yourself.">
     <meta property="og:image" content="https://static.theboiismc.com/profile-card.jpg">
     <meta property="og:url" content="https://www.theboiismc.com/">
 
@@ -33,12 +33,18 @@
           "@id": "https://www.theboiismc.com/#website",
           "url": "https://www.theboiismc.com/",
           "name": "TheBoiisMC",
-          "description": "A digital garden focused on privacy, self-hosting, and open infrastructure.",
+          "description": "TheBoiisMC | Digital Freedom. If the cloud is just someone else's computer? Why not build one yourself.",
           "publisher": { "@id": "https://www.theboiismc.com/#person" },
           "inLanguage": "en-US",
           "hasPart": [
-            { "@id": "https://search.theboiismc.com/#webapp" },
-            { "@id": "https://maps.theboiismc.com/#webapp" }
+            { 
+                "@type": "WebApplication",
+                "@id": "https://search.theboiismc.com/#webapp" 
+            },
+            { 
+                "@type": "WebApplication",
+                "@id": "https://maps.theboiismc.com/#webapp" 
+            }
           ]
         },
         {
@@ -47,9 +53,15 @@
           "url": "https://www.theboiismc.com/",
           "name": "TheBoiisMC | Privacy, Code & Life",
           "isPartOf": { "@id": "https://www.theboiismc.com/#website" },
-          "mainEntity": { "@id": "https://www.theboiismc.com/#person" },
-          "about": { "@id": "https://www.theboiismc.com/#person" },
-          "description": "The personal profile and digital garden of TheBoiisMC."
+          "mainEntity": { 
+              "@type": "Person",
+              "@id": "https://www.theboiismc.com/#person" 
+          },
+          "about": { 
+              "@type": "Person",
+              "@id": "https://www.theboiismc.com/#person" 
+          },
+          "description": "TheBoiisMC | Digital Freedom. If the cloud is just someone else's computer? Why not build one yourself."
         },
         {
           "@type": "Person",
@@ -72,7 +84,7 @@
               "addressCountry": "US"
             }
           },
-          "description": "Privacy advocate, self-hoster, and dog owner building a private corner of the internet.",
+          "description": "TheBoiisMC | Digital Freedom. If the cloud is just someone else's computer? Why not build one yourself.",
           "knowsAbout": ["Online Privacy", "Web Infrastructure", "Linux", "Self-Hosting"]
         },
         {
@@ -127,8 +139,7 @@
             <span class="tag">About Me</span>
             <h1>Hi, I'm <span class="text-highlight">TheBoiisMC</span>.</h1>
             <p>
-                Welcome to my corner of the internet. I'm a developer and privacy advocate based in Wisconsin. 
-                This site isn't a startup—it's my digital garden. I build things to see if I can, and I host them because I hate being tracked.
+                TheBoiisMC | Digital Freedom. If the cloud is just someone else's computer? Why not build one yourself.
             </p>
         </article>
 
