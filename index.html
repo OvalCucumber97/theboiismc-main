@@ -19,7 +19,10 @@
 
     <link rel="icon" type="image/png" sizes="32x32" href="https://static.theboiismc.com/favicon-32x32.png">
     
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://static.theboiismc.com/main.css">
+    
+    <script src="https://static.theboiismc.com/header.js"></script>
+    <script src="https://static.theboiismc.com/menu.js"></script>
 
     <script type="application/ld+json">
     {
@@ -81,8 +84,7 @@
           "operatingSystem": "All",
           "browserRequirements": "Requires JavaScript",
           "description": "A private, tracking-free search engine that respects user data. No logs, no profiling.",
-          "author": { "@id": "https://www.theboiismc.com/#person" },
-          "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock" }
+          "author": { "@id": "https://www.theboiismc.com/#person" }
         },
         {
           "@type": "WebApplication",
@@ -93,8 +95,7 @@
           "operatingSystem": "All",
           "browserRequirements": "Requires JavaScript",
           "description": "Secure, private mapping and navigation tools. Explore the world without being tracked.",
-          "author": { "@id": "https://www.theboiismc.com/#person" },
-          "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock" }
+          "author": { "@id": "https://www.theboiismc.com/#person" }
         }
       ]
     }
@@ -105,12 +106,12 @@
     <boiismc-header></boiismc-header>
 
     <div class="waffle-container">
-        <button id="waffleBtn" class="waffle-btn" aria-label="Open Apps Menu" aria-expanded="false">
+        <button id="waffleBtn" class="waffle-btn" aria-label="Open Apps Menu">
             <svg class="waffle-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z"/>
             </svg>
         </button>
-        <nav id="appDrawer" class="app-drawer" aria-hidden="true">
+        <nav id="appDrawer" class="app-drawer">
             <a href="https://maps.theboiismc.com" class="app-link">
                 <span class="app-emoji">🗺️</span> Maps
             </a>
@@ -137,7 +138,8 @@
             <p>
                 My two dogs are the reason I step away from the keyboard. If the site is down, I'm probably walking them. 
             </p>
-            <div class="card-image-placeholder" role="img" aria-label="Photo of my dogs"></div>
+            <div class="card-image-placeholder" role="img" aria-label="Photo of my dogs">
+            </div>
         </article>
 
         <article class="card">
@@ -169,9 +171,6 @@
     <footer class="site-footer">
         &copy; 2026 TheBoiisMC. Built privately in public.
     </footer>
-
-    <script src="https://static.theboiismc.com/header.js"></script>
-    <script src="menu.js"></script>
 
 </body>
 </html>
