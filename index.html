@@ -29,43 +29,96 @@
       "@context": "https://schema.org",
       "@graph": [
         {
+          "@type": "WebSite",
+          "@id": "https://www.theboiismc.com/#website",
+          "url": "https://www.theboiismc.com/",
+          "name": "TheBoiisMC",
+          "description": "A digital garden focused on privacy, self-hosting, and open infrastructure.",
+          "publisher": {
+            "@id": "https://www.theboiismc.com/#person"
+          },
+          "inLanguage": "en-US",
+          "hasPart": [
+            { "@id": "https://search.theboiismc.com/#webapp" },
+            { "@id": "https://maps.theboiismc.com/#webapp" }
+          ]
+        },
+        {
           "@type": "ProfilePage",
           "@id": "https://www.theboiismc.com/#webpage",
           "url": "https://www.theboiismc.com/",
-          "name": "TheBoiisMC - Digital Garden",
-          "isPartOf": { "@id": "https://www.theboiismc.com/#website" },
-          "primaryImageOfPage": { "@id": "https://www.theboiismc.com/#primaryimage" }
+          "name": "TheBoiisMC | Privacy, Code & Life",
+          "isPartOf": {
+            "@id": "https://www.theboiismc.com/#website"
+          },
+          "about": {
+            "@id": "https://www.theboiismc.com/#person"
+          },
+          "description": "The personal profile and digital garden of TheBoiisMC."
         },
         {
           "@type": "Person",
           "@id": "https://www.theboiismc.com/#person",
           "name": "TheBoiisMC",
+          "givenName": "TheBoiisMC",
+          "jobTitle": "Privacy Advocate & Developer",
+          "url": "https://www.theboiismc.com/",
+          "image": {
+            "@type": "ImageObject",
+            "url": "https://static.theboiismc.com/profile.jpg",
+            "caption": "TheBoiisMC Profile Photo"
+          },
           "homeLocation": {
             "@type": "Place",
-            "name": "Wisconsin, USA"
+            "name": "Wisconsin, USA",
+            "address": {
+              "@type": "PostalAddress",
+              "addressRegion": "WI",
+              "addressCountry": "US"
+            }
           },
-          "description": "Privacy advocate, self-hoster, and dog owner.",
-          "knowsAbout": ["Online Privacy", "Web Infrastructure", "Linux"],
-          "image": "https://static.theboiismc.com/profile.jpg",
-          "mainEntityOfPage": { "@id": "https://www.theboiismc.com/#webpage" }
+          "description": "Privacy advocate, self-hoster, and dog owner building a private corner of the internet.",
+          "knowsAbout": ["Online Privacy", "Web Infrastructure", "Linux", "Self-Hosting"]
         },
         {
           "@type": "WebApplication",
+          "@id": "https://search.theboiismc.com/#webapp",
           "name": "TheBoiisMC Search",
           "url": "https://search.theboiismc.com",
           "applicationCategory": "SearchEngine",
-          "description": "A private, tracking-free search engine.",
-          "author": { "@id": "https://www.theboiismc.com/#person" },
-          "isAccessibleForFree": true
+          "operatingSystem": "All",
+          "browserRequirements": "Requires JavaScript",
+          "description": "A private, tracking-free search engine that respects user data. No logs, no profiling.",
+          "author": {
+            "@id": "https://www.theboiismc.com/#person"
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock"
+          },
+          "featureList": "Anonymous searching, No tracking pixels, Unfiltered results"
         },
         {
           "@type": "WebApplication",
+          "@id": "https://maps.theboiismc.com/#webapp",
           "name": "TheBoiisMC Maps",
           "url": "https://maps.theboiismc.com",
           "applicationCategory": "NavigationApplication",
-          "description": "Secure, private mapping and navigation.",
-          "author": { "@id": "https://www.theboiismc.com/#person" },
-          "isAccessibleForFree": true
+          "operatingSystem": "All",
+          "browserRequirements": "Requires JavaScript",
+          "description": "Secure, private mapping and navigation tools. Explore the world without being tracked.",
+          "author": {
+            "@id": "https://www.theboiismc.com/#person"
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock"
+          },
+          "featureList": "Private routing, OpenStreetMap data, No location history"
         }
       ]
     }
