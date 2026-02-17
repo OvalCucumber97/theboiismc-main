@@ -92,8 +92,14 @@
           "publisher": { "@id": "https://www.theboiismc.com/#person" },
           "inLanguage": "en-US",
           "hasPart": [
-            { "@type": "WebApplication", "@id": "https://search.theboiismc.com/#webapp" },
-            { "@type": "WebApplication", "@id": "https://maps.theboiismc.com/#webapp" }
+            { 
+                "@type": "WebApplication",
+                "@id": "https://search.theboiismc.com/#webapp" 
+            },
+            { 
+                "@type": "WebApplication",
+                "@id": "https://maps.theboiismc.com/#webapp" 
+            }
           ]
         },
         {
@@ -102,24 +108,61 @@
           "url": "https://www.theboiismc.com/",
           "name": "TheBoiisMC | Privacy, Code & Life",
           "isPartOf": { "@id": "https://www.theboiismc.com/#website" },
-          "mainEntity": { "@type": "Person", "@id": "https://www.theboiismc.com/#person" }
+          "mainEntity": { 
+              "@type": "Person",
+              "@id": "https://www.theboiismc.com/#person" 
+          },
+          "about": { 
+              "@type": "Person",
+              "@id": "https://www.theboiismc.com/#person" 
+          },
+          "description": "TheBoiisMC | Digital Freedom. If the cloud is just someone else's computer? Why not build one yourself."
         },
         {
           "@type": "Person",
           "@id": "https://www.theboiismc.com/#person",
           "name": "TheBoiisMC",
+          "givenName": "TheBoiisMC",
           "jobTitle": "Privacy Advocate & Developer",
           "url": "https://www.theboiismc.com/",
           "image": {
             "@type": "ImageObject",
-            "url": "https://static.theboiismc.com/profile.jpg"
+            "url": "https://static.theboiismc.com/profile.jpg",
+            "caption": "TheBoiisMC Profile Photo"
           },
           "homeLocation": {
             "@type": "Place",
-            "name": "Wisconsin, USA"
+            "name": "Wisconsin, USA",
+            "address": {
+              "@type": "PostalAddress",
+              "addressRegion": "WI",
+              "addressCountry": "US"
+            }
           },
           "description": "TheBoiisMC | Digital Freedom. If the cloud is just someone else's computer? Why not build one yourself.",
           "knowsAbout": ["Online Privacy", "Web Infrastructure", "Linux", "Self-Hosting"]
+        },
+        {
+          "@type": "WebApplication",
+          "@id": "https://search.theboiismc.com/#webapp",
+          "name": "TheBoiisMC Search",
+          "url": "https://search.theboiismc.com",
+          "applicationCategory": "SearchEngine",
+          "operatingSystem": "All",
+          "browserRequirements": "Requires JavaScript",
+          "description": "A private, tracking-free search engine that respects user data. No logs, no profiling.",
+          "author": { "@id": "https://www.theboiismc.com/#person" }
+        },
+        {
+          "@type": "WebApplication",
+          "@id": "https://maps.theboiismc.com/#webapp",
+          "name": "TheBoiisMC Maps",
+          "url": "https://maps.theboiismc.com",
+          "applicationCategory": "NavigationApplication",
+          "operatingSystem": "All",
+          "browserRequirements": "Requires JavaScript",
+          "description": "Secure, private mapping and navigation tools. Explore the world without being tracked.",
+          "author": { "@id": "https://www.theboiismc.com/#person" }
         }
       ]
     }
