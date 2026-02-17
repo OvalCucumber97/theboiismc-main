@@ -1,36 +1,90 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TheBoiisMC — Personal Stack & Public Utilities</title>
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="https://static.theboiismc.com/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://static.theboiismc.com/favicon-32x32.png">
+    <link rel="manifest" href="/site.webmanifest">
 
-    <title>TheBoiisMC | Privacy, Code & Life</title>
-    <meta name="description" content="TheBoiisMC | Digital Freedom. If the cloud is just someone else's computer? Why not build one yourself.">
-    <meta name="keywords" content="TheBoiisMC, Privacy Tools, Secure Maps, Anonymous Search">
+    <meta name="description" content="Personal hub of TheBoiisMC. Privacy advocate and self-hoster. Digital Freedom — if the cloud is just someone else's computer, why not build one yourself?">
+    <meta name="keywords" content="TheBoiisMC, Privacy Tools, Secure Maps, Anonymous Search, Homelab, Self-Hosting">
     <meta name="author" content="TheBoiisMC">
-    <meta name="theme-color" content="#0F172A">
+    <meta name="theme-color" content="#030712">
     <link rel="canonical" href="https://www.theboiismc.com/">
 
-    <meta property="og:type" content="profile">
-    <meta property="og:title" content="TheBoiisMC | Digital Freedom">
-    <meta property="og:description" content="TheBoiisMC | Digital Freedom. If the cloud is just someone else's computer? Why not build one yourself.">
+    <meta property="og:title" content="TheBoiisMC — Personal Homelab Stack" />
+    <meta property="og:description" content="A collection of my self-hosted services, including public, privacy-focused Maps and Search engines." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.theboiismc.com/" />
     <meta property="og:image" content="https://static.theboiismc.com/profile-card.jpg">
-    <meta property="og:url" content="https://www.theboiismc.com/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="TheBoiisMC | Digital Freedom">
+    <meta name="twitter:description" content="Digital Freedom. Build your own cloud.">
+    <meta name="twitter:image" content="https://static.theboiismc.com/profile-card.jpg">
 
-    <link rel="icon" type="image/png" sizes="32x32" href="https://static.theboiismc.com/favicon-32x32.png">
-    
-    <link rel="stylesheet" href="https://static.theboiismc.com/css/brand/brandstyle.css">
-    <link rel="stylesheet" href="https://static.theboiismc.com/css/fonts/material-symbols.css">
-    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" />
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            DEFAULT: '#10B981', // Terminal Green for a real tech look
+                            glow: '#34D399',
+                        },
+                        bg: {
+                            main: '#030712',
+                            surface: '#111827',
+                        }
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        /* SYSTEM FONTS: Fast, Privacy-Respecting */
-        body, button, input, textarea, select {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0b1220; }
+        ::-webkit-scrollbar-thumb { background: #374151; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #4b5563; }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        
+        .glass-panel {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        /* Material Symbols Support */
+        @font-face {
+            font-family: 'Material Symbols Outlined';
+            font-style: normal;
+            src: url('https://static.theboiismc.com/fonts/material-symbols-outlined.woff2') format('woff2');
+        }
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal; font-style: normal; font-size: 24px; line-height: 1; display: inline-block;
         }
     </style>
-    
-    <script src="https://static.theboiismc.com/js/brand/header.js"></script>
-    <script src="https://static.theboiismc.com/js/brand/menu.js"></script>
 
     <script type="application/ld+json">
     {
@@ -41,139 +95,198 @@
           "@id": "https://www.theboiismc.com/#website",
           "url": "https://www.theboiismc.com/",
           "name": "TheBoiisMC",
-          "description": "TheBoiisMC | Digital Freedom. If the cloud is just someone else's computer? Why not build one yourself.",
-          "publisher": { "@id": "https://www.theboiismc.com/#person" },
-          "inLanguage": "en-US",
-          "hasPart": [
-            { 
-                "@type": "WebApplication",
-                "@id": "https://search.theboiismc.com/#webapp" 
-            },
-            { 
-                "@type": "WebApplication",
-                "@id": "https://maps.theboiismc.com/#webapp" 
-            }
-          ]
-        },
-        {
-          "@type": "ProfilePage",
-          "@id": "https://www.theboiismc.com/#webpage",
-          "url": "https://www.theboiismc.com/",
-          "name": "TheBoiisMC | Privacy, Code & Life",
-          "isPartOf": { "@id": "https://www.theboiismc.com/#website" },
-          "mainEntity": { 
-              "@type": "Person",
-              "@id": "https://www.theboiismc.com/#person" 
-          },
-          "about": { 
-              "@type": "Person",
-              "@id": "https://www.theboiismc.com/#person" 
-          },
-          "description": "TheBoiisMC | Digital Freedom. If the cloud is just someone else's computer? Why not build one yourself."
+          "publisher": { "@id": "https://www.theboiismc.com/#person" }
         },
         {
           "@type": "Person",
           "@id": "https://www.theboiismc.com/#person",
           "name": "TheBoiisMC",
-          "givenName": "TheBoiisMC",
           "jobTitle": "Privacy Advocate & Developer",
           "url": "https://www.theboiismc.com/",
-          "image": {
-            "@type": "ImageObject",
-            "url": "https://static.theboiismc.com/profile.jpg",
-            "caption": "TheBoiisMC Profile Photo"
-          },
           "homeLocation": {
             "@type": "Place",
-            "name": "Wisconsin, USA",
-            "address": {
-              "@type": "PostalAddress",
-              "addressRegion": "WI",
-              "addressCountry": "US"
-            }
+            "name": "Wisconsin, USA"
           },
-          "description": "TheBoiisMC | Digital Freedom. If the cloud is just someone else's computer? Why not build one yourself.",
           "knowsAbout": ["Online Privacy", "Web Infrastructure", "Linux", "Self-Hosting"]
-        },
-        {
-          "@type": "WebApplication",
-          "@id": "https://search.theboiismc.com/#webapp",
-          "name": "TheBoiisMC Search",
-          "url": "https://search.theboiismc.com",
-          "applicationCategory": "SearchEngine",
-          "operatingSystem": "All",
-          "browserRequirements": "Requires JavaScript",
-          "description": "A private, tracking-free search engine that respects user data. No logs, no profiling.",
-          "author": { "@id": "https://www.theboiismc.com/#person" }
-        },
-        {
-          "@type": "WebApplication",
-          "@id": "https://maps.theboiismc.com/#webapp",
-          "name": "TheBoiisMC Maps",
-          "url": "https://maps.theboiismc.com",
-          "applicationCategory": "NavigationApplication",
-          "operatingSystem": "All",
-          "browserRequirements": "Requires JavaScript",
-          "description": "Secure, private mapping and navigation tools. Explore the world without being tracked.",
-          "author": { "@id": "https://www.theboiismc.com/#person" }
         }
       ]
     }
     </script>
 </head>
-<body>
 
-    <boiismc-header></boiismc-header>
+<body class="bg-bg-main text-gray-100 antialiased selection:bg-brand selection:text-white overflow-x-hidden">
+    
+    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-brand/10 rounded-full mix-blend-screen filter blur-[128px] opacity-40 animate-blob"></div>
+        <div class="absolute -bottom-32 left-1/3 w-96 h-96 bg-blue-600/10 rounded-full mix-blend-screen filter blur-[128px] opacity-40 animate-blob"></div>
+    </div>
 
-    <main class="main-grid">
+    <header class="fixed top-0 w-full z-50 bg-bg-main/80 backdrop-blur-md border-b border-white/5 h-16 flex items-center">
+        <div class="max-w-7xl mx-auto px-6 w-full flex items-center justify-between">
+            <a href="/" class="flex items-center gap-2 group">
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand to-emerald-600 flex items-center justify-center text-white shadow-lg">
+                    <i class="fa-solid fa-cloud text-[18px]"></i>
+                </div>
+                <span class="text-xl font-bold tracking-tight text-white">
+                    TheBoiis<span class="text-brand">MC</span>
+                </span>
+            </a>
+            <nav class="hidden md:flex gap-8 text-sm font-medium text-gray-400">
+                <a href="#products" class="hover:text-brand transition">Utilities</a>
+                <a href="#privacy" class="hover:text-brand transition">Philosophy</a>
+                <a href="#life" class="hover:text-brand transition">Offline</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content-start" class="relative z-10">
         
-        <article class="card hero">
-            <span class="tag">About Me</span>
-            <h1>Hi, I'm <span class="text-highlight">TheBoiisMC</span>.</h1>
-            <p>
-                TheBoiisMC | Digital Freedom. If the cloud is just someone else's computer? Why not build one yourself.
-            </p>
-        </article>
+        <section class="pt-40 pb-20 px-6">
+            <div class="max-w-5xl mx-auto text-center space-y-8">
+                <div class="reveal inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand/30 bg-brand/10 text-brand text-sm font-medium backdrop-blur-sm">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-brand"></span>
+                    </span>
+                    Digital Self-Sovereignty
+                </div>
 
-        <article class="card">
-            <span class="tag">Life</span>
-            <h2>The Real Bosses</h2>
-            <p>
-                My two dogs are the reason I step away from the keyboard. If the site is down, I'm probably walking them. 
-            </p>
-            <div class="card-image-placeholder" role="img" aria-label="Photo of my dogs">
+                <h1 class="reveal text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.1]">
+                    Built my own cloud.<br />
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-gray-400 via-white to-gray-400">Privacy is the default.</span>
+                </h1>
+
+                <p class="reveal text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
+                    If the cloud is just someone else's computer, why not build your own? 
+                    I built this space to prove that digital convenience can exist without surveillance.
+                </p>
+
+                <div class="reveal flex flex-col sm:flex-row gap-4 justify-center mt-10">
+                    <a href="#products" class="px-8 py-4 bg-white text-black font-bold rounded-xl hover:bg-gray-200 transition shadow-lg shadow-white/10">
+                        Explore Public Apps
+                    </a>
+                    <a href="https://github.com/TheBoiismc" target="_blank" class="px-8 py-4 glass-panel text-white font-medium rounded-xl hover:bg-white/10 transition">
+                        View Source
+                    </a>
+                </div>
             </div>
-        </article>
+        </section>
 
-        <article class="card">
-            <span class="tag">Philosophy</span>
-            <h2>Why I Self-Host</h2>
-            <p>
-                Your data shouldn't be the price of admission for the internet. I run my own Maps and Search instances to prove that privacy is still possible in 2026.
-            </p>
-        </article>
+        <section id="products" class="max-w-7xl mx-auto px-6 py-20">
+            <div class="text-center mb-16">
+                <h2 class="reveal text-3xl md:text-5xl font-bold text-white mb-4">Public Utilities</h2>
+                <p class="reveal text-gray-400">Independent services designed for speed and security.</p>
+            </div>
 
-        <article class="card">
-            <span class="tag">Status</span>
-            <h2>System Status</h2>
-            <ul class="status-list">
-                <li>
-                    <span>Homelab:</span> <span class="status-green">Online</span>
-                </li>
-                <li>
-                    <span>Coffee:</span> <span class="status-yellow">Low</span>
-                </li>
-                <li>
-                    <span>Location:</span> <span>WI, USA</span>
-                </li>
-            </ul>
-        </article>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="reveal group glass-panel p-8 rounded-3xl border border-white/10 hover:border-brand/50 transition-colors duration-500 h-[300px] flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 bg-brand/20 rounded-xl flex items-center justify-center text-brand mb-4">
+                            <i class="fa-solid fa-map-location-dot text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Maps</h3>
+                        <p class="text-sm text-gray-400">Private by default. Driving directions and vector tiles with no history logging.</p>
+                    </div>
+                    <a href="https://maps.theboiismc.com" class="flex items-center text-brand font-semibold group-hover:translate-x-2 transition-transform">
+                        Launch Private Maps <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
 
+                <div class="reveal group glass-panel p-8 rounded-3xl border border-white/10 hover:border-blue-500/50 transition-colors duration-500 h-[300px] flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center text-blue-400 mb-4">
+                            <i class="fa-solid fa-magnifying-glass text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Search</h3>
+                        <p class="text-sm text-gray-400">A privacy-respecting meta-search engine. No logs, no profiling, just results.</p>
+                    </div>
+                    <a href="https://search.theboiismc.com" class="flex items-center text-blue-400 font-semibold group-hover:translate-x-2 transition-transform">
+                        Use Private Search <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="privacy" class="border-y border-white/10 bg-bg-surface/30 backdrop-blur-sm py-24">
+            <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+                <div class="space-y-6 reveal">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white">Privacy is always on.<br><span class="text-brand">It's not an option.</span></h2>
+                    <p class="text-gray-400 text-lg">
+                        I built TheBoiisMC to show that modern convenience can be achieved privately. Everything runs on open-source infrastructure.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3 text-gray-300">
+                            <i class="fa-solid fa-circle-check text-brand"></i>
+                            <span>Zero-Knowledge Architecture</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-300">
+                            <i class="fa-solid fa-circle-check text-brand"></i>
+                            <span>No Third-Party Tracking Software</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="relative reveal">
+                    <div class="glass-panel p-8 rounded-2xl border border-white/10">
+                        <div class="flex justify-between items-center border-b border-white/10 pb-4 mb-4">
+                            <span class="text-sm font-mono text-gray-400">Network Activity Monitor</span>
+                            <div class="flex gap-1">
+                                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                            </div>
+                        </div>
+                        <div class="space-y-3 font-mono text-xs md:text-sm">
+                            <div class="flex justify-between"><span class="text-brand">GET /api/maps/tile</span><span class="text-gray-500">12ms</span></div>
+                            <div class="flex justify-between"><span class="text-brand">GET /api/search/query</span><span class="text-gray-500">150ms</span></div>
+                            <div class="flex justify-between opacity-40"><span class="text-red-400">TRACKING_PIXEL</span><span class="text-red-400">BLOCKED</span></div>
+                            <div class="flex justify-between opacity-40"><span class="text-red-400">ANALYTICS_SERVICE</span><span class="text-red-400">BLOCKED</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="life" class="max-w-7xl mx-auto px-6 py-24">
+            <div class="grid md:grid-cols-2 gap-16">
+                <div class="reveal">
+                    <h2 class="text-3xl font-bold text-white mb-6">Offline Mode</h2>
+                    <p class="text-gray-400 text-lg leading-relaxed">
+                        When the servers are running smooth, my two dogs are the reason I step away from the keyboard. 
+                        Located in Wisconsin, running on coffee and clean code.
+                    </p>
+                </div>
+                <div class="reveal space-y-4">
+                    <div class="glass-panel p-6 rounded-xl border-l-4 border-brand">
+                        <span class="text-xs text-gray-500 uppercase tracking-widest font-bold">Hardware Stack</span>
+                        <p class="text-white mt-1">Pop!_OS / TrueNAS Scale / NUC Clusters</p>
+                    </div>
+                    <p class="text-gray-500 text-sm">
+                        Site Status: <span class="text-green-400">Nominal</span> • 
+                        Cat Behavior: <span class="text-yellow-400">Eating Plastic</span>
+                    </p>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <footer class="site-footer">
-        &copy; 2026 TheBoiisMC. Built privately in public.
+    <footer class="border-t border-white/10 bg-bg-main py-10 text-center">
+        <div class="max-w-7xl mx-auto px-6">
+            <span class="text-2xl font-bold text-white">TheBoiis<span class="text-brand">MC</span></span>
+            <p class="text-gray-500 text-sm mt-4">&copy; 2026 TheBoiisMC. Built privately in public.</p>
+        </div>
     </footer>
 
+    <script src="https://static.theboiismc.com/js/main.js" defer></script>
+    <script>
+        // Simple Scroll Reveal Logic
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>
