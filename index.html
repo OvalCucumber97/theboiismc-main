@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TheBoiisMC — Personal Stack & Public Utilities</title>
-    
-    <link rel="apple-touch-icon" sizes="180x180" href="https://static.theboiismc.com/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://static.theboiismc.com/favicon-32x32.png">
-    <link rel="manifest" href="/site.webmanifest">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description" content="Personal hub of TheBoiisMC. Privacy advocate and self-hoster. Digital Freedom — if the cloud is just someone else's computer, why not build one yourself?">
-    <meta name="keywords" content="TheBoiisMC, Privacy Tools, Secure Maps, Anonymous Search, Homelab, Self-Hosting">
+    <title>TheBoiisMC | Privacy, Code & Life</title>
+    <meta name="description" content="TheBoiisMC | Digital Freedom. If the cloud is just someone else's computer? Why not build one yourself.">
+    <meta name="keywords" content="TheBoiisMC, Privacy Tools, Secure Maps, Anonymous Search">
     <meta name="author" content="TheBoiisMC">
-    <meta name="theme-color" content="#030712">
+    <meta name="theme-color" content="#0F172A">
     <link rel="canonical" href="https://www.theboiismc.com/">
 
-    <meta property="og:title" content="TheBoiisMC — Personal Homelab Stack" />
-    <meta property="og:description" content="A collection of my self-hosted services, including public, privacy-focused Maps and Search engines." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.theboiismc.com/" />
+    <meta property="og:type" content="profile">
+    <meta property="og:title" content="TheBoiisMC | Digital Freedom">
+    <meta property="og:description" content="TheBoiisMC | Digital Freedom. If the cloud is just someone else's computer? Why not build one yourself.">
     <meta property="og:image" content="https://static.theboiismc.com/profile-card.jpg">
+    <meta property="og:url" content="https://www.theboiismc.com/">
+
+    <link rel="icon" type="image/png" sizes="32x32" href="https://static.theboiismc.com/favicon-32x32.png">
+    
+    <link rel="stylesheet" href="https://static.theboiismc.com/css/brand/brandstyle.css">
+    <link rel="stylesheet" href="https://static.theboiismc.com/css/fonts/material-symbols.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://static.theboiismc.com/favicon-32x32.png">
+    <link rel="manifest" href="/site.webmanifest">
+    
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="TheBoiisMC | Digital Freedom">
     <meta name="twitter:description" content="Digital Freedom. Build your own cloud.">
@@ -35,7 +39,7 @@
                 extend: {
                     colors: {
                         brand: {
-                            DEFAULT: '#10B981', // Terminal Green for a real tech look
+                            DEFAULT: '#10B981', 
                             glow: '#34D399',
                         },
                         bg: {
@@ -73,20 +77,9 @@
             backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
-        
-        /* Material Symbols Support */
-        @font-face {
-            font-family: 'Material Symbols Outlined';
-            font-style: normal;
-            src: url('https://static.theboiismc.com/fonts/material-symbols-outlined.woff2') format('woff2');
-        }
-        .material-symbols-outlined {
-            font-family: 'Material Symbols Outlined';
-            font-weight: normal; font-style: normal; font-size: 24px; line-height: 1; display: inline-block;
-        }
     </style>
 
-     <script type="application/ld+json">
+    <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@graph": [
@@ -99,14 +92,8 @@
           "publisher": { "@id": "https://www.theboiismc.com/#person" },
           "inLanguage": "en-US",
           "hasPart": [
-            { 
-                "@type": "WebApplication",
-                "@id": "https://search.theboiismc.com/#webapp" 
-            },
-            { 
-                "@type": "WebApplication",
-                "@id": "https://maps.theboiismc.com/#webapp" 
-            }
+            { "@type": "WebApplication", "@id": "https://search.theboiismc.com/#webapp" },
+            { "@type": "WebApplication", "@id": "https://maps.theboiismc.com/#webapp" }
           ]
         },
         {
@@ -115,61 +102,24 @@
           "url": "https://www.theboiismc.com/",
           "name": "TheBoiisMC | Privacy, Code & Life",
           "isPartOf": { "@id": "https://www.theboiismc.com/#website" },
-          "mainEntity": { 
-              "@type": "Person",
-              "@id": "https://www.theboiismc.com/#person" 
-          },
-          "about": { 
-              "@type": "Person",
-              "@id": "https://www.theboiismc.com/#person" 
-          },
-          "description": "TheBoiisMC | Digital Freedom. If the cloud is just someone else's computer? Why not build one yourself."
+          "mainEntity": { "@type": "Person", "@id": "https://www.theboiismc.com/#person" }
         },
         {
           "@type": "Person",
           "@id": "https://www.theboiismc.com/#person",
           "name": "TheBoiisMC",
-          "givenName": "TheBoiisMC",
           "jobTitle": "Privacy Advocate & Developer",
           "url": "https://www.theboiismc.com/",
           "image": {
             "@type": "ImageObject",
-            "url": "https://static.theboiismc.com/profile.jpg",
-            "caption": "TheBoiisMC Profile Photo"
+            "url": "https://static.theboiismc.com/profile.jpg"
           },
           "homeLocation": {
             "@type": "Place",
-            "name": "Wisconsin, USA",
-            "address": {
-              "@type": "PostalAddress",
-              "addressRegion": "WI",
-              "addressCountry": "US"
-            }
+            "name": "Wisconsin, USA"
           },
           "description": "TheBoiisMC | Digital Freedom. If the cloud is just someone else's computer? Why not build one yourself.",
           "knowsAbout": ["Online Privacy", "Web Infrastructure", "Linux", "Self-Hosting"]
-        },
-        {
-          "@type": "WebApplication",
-          "@id": "https://search.theboiismc.com/#webapp",
-          "name": "TheBoiisMC Search",
-          "url": "https://search.theboiismc.com",
-          "applicationCategory": "SearchEngine",
-          "operatingSystem": "All",
-          "browserRequirements": "Requires JavaScript",
-          "description": "A private, tracking-free search engine that respects user data. No logs, no profiling.",
-          "author": { "@id": "https://www.theboiismc.com/#person" }
-        },
-        {
-          "@type": "WebApplication",
-          "@id": "https://maps.theboiismc.com/#webapp",
-          "name": "TheBoiisMC Maps",
-          "url": "https://maps.theboiismc.com",
-          "applicationCategory": "NavigationApplication",
-          "operatingSystem": "All",
-          "browserRequirements": "Requires JavaScript",
-          "description": "Secure, private mapping and navigation tools. Explore the world without being tracked.",
-          "author": { "@id": "https://www.theboiismc.com/#person" }
         }
       ]
     }
@@ -314,7 +264,7 @@
                 <div class="reveal">
                     <h2 class="text-3xl font-bold text-white mb-6">Offline Mode</h2>
                     <p class="text-gray-400 text-lg leading-relaxed">
-                        When the servers are running smooth, my two dogs are the reason I step away from the keyboard. 
+                        When the servers are running smooth, my two dogs are the reason I step away from the keyboard.
                         Located in Wisconsin, running on coffee and clean code.
                     </p>
                 </div>
@@ -341,7 +291,7 @@
 
     <script src="https://static.theboiismc.com/js/main.js" defer></script>
     <script>
-        // Simple Scroll Reveal Logic
+        // Intersection Observer for scroll reveal animations
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) entry.target.classList.add('active');
